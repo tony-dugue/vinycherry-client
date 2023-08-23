@@ -1,8 +1,5 @@
 const InscriptionPage = () => {
-  return (
-    <div>Page Inscription</div>
-  )
-}
+  return <div>Page Inscription</div>;
+};
 
 export default InscriptionPage;
-
