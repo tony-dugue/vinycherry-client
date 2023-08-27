@@ -31,15 +31,15 @@ module.exports = {
         900: '#171923',
       },
       primary: {
-        100: '#B2F5EA',
-        200: '#81E6D9',
-        300: '#4FD1C5',
-        400: '#38B2AC',
-        500: '#319795',
-        600: '#2C7A7B',
-        700: '#285E61',
-        800: '#234E52',
-        900: '#1D4044',
+        100: '#e6f3f8',
+        200: '#c7e6f0',
+        300: '#89ccdf',
+        400: '#5ebad2',
+        500: '#3aa1bd',
+        600: '#2983a0',
+        700: '#236a81',
+        800: '#20596c',
+        900: '#204b5a',
       },
       red: {
         100: '#FED7D7',
@@ -53,7 +53,6 @@ module.exports = {
         900: '#63171B',
       },
       green: {
-        // Chakra teal
         100: '#C6F6D5',
         200: '#9AE6B4',
         300: '#68D391',
@@ -66,6 +65,22 @@ module.exports = {
       },
     },
     fontFamily: {
+      default: [
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        '"Noto Sans"',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
+      ],
       sans: ['var(--font-roboto)'],
     },
     fontSize: {
@@ -87,10 +102,19 @@ module.exports = {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px', 
+        '2xl': '1400px',
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-authnavbar":
+          "linear-gradient(112.83deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.8) 110.84%)",
+      },
+      boxShadow: {
+        focus: "0 0 0 1px rgb(94, 186, 210)",
+        authnavbar: "0px 7px 23px rgba(0, 0, 0, 0.05)",
+        registerForm: "0px 20px 27px 0px rgba(0, 0, 0, 0.05)",
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -149,4 +173,3 @@ module.exports = {
   },
   plugins: [require('tailwindcss-animate')],
 };
-
