@@ -49,6 +49,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
+    "@reduxjs/toolkit": "^1.9.5",
     "@storybook/addon-essentials": "^7.4.0",
     "@storybook/addon-interactions": "^7.4.0",
     "@storybook/addon-links": "^7.4.0",
@@ -61,6 +62,7 @@
     "eslint-plugin-storybook": "^0.6.13",
     "husky": "^8.0.3",
     "prettier": "^3.0.2",
+    "react-redux": "^8.1.2",
     "storybook": "^7.4.0"
   }
 }
