@@ -5,10 +5,10 @@ const config: ConfigFile = {
   apiFile: './store/emptyApi.ts',
   apiImport: 'emptySplitApi',
   outputFiles: {
-    './store/services/auth.ts': {
+    './store/services/authApi.ts': {
       filterEndpoints: [/auth/i],
     },
-    './store/services/users.ts': {
+    './store/services/userApi.ts': {
       filterEndpoints: [/user/i],
     },
   },
