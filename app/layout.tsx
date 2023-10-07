@@ -2,6 +2,7 @@ import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import Provider from "@/store/provider";
+import { Setup } from '@/components/utils';
 
 const roboto = Roboto({ 
   weight: ['300', '400', '500', '700'], 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr" className={roboto.variable}>
       <body>
         <Provider>
+          <Setup />
           {children}
         </Provider>
         </body>

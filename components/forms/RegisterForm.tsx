@@ -1,46 +1,74 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import * as z from 'zod';
-import { zodResolver } from "@hookform/resolvers/zod"
 
+import Spinner from '@/components/common/Spinner';
 import { Button } from '@/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { AuthInput } from '@/components/ui/input';
+import { RegisterUserDto, useAuthControllerRegisterMutation } from '@/store/services/authApi';
 
 const formSchema = z
   .object({
-    firstname: z.string().min(1, { message: 'Votre prénom est requis.' }),
-    lastname: z.string().min(1, { message: 'Votre nom est requis.' }),
+    firstName: z.string().min(1, { message: 'Votre prénom est requis.' }),
+    lastName: z.string().min(1, { message: 'Votre nom est requis.' }),
     email: z
       .string()
       .min(1, { message: 'Votre email est requis.' })
       .email("Cet email n'est pas valide."),
     password: z.string().min(4, { message: 'Votre mot de passe est requis.' }),
-    confirmPassword: z.string().min(4, { message: 'Votre mot de passe est requis.' }),
+    confirmationPassword: z.string().min(4, { message: 'Votre mot de passe est requis.' }),
   })
-  .refine((values) => values.password === values.confirmPassword, {
-    message: "Les mots de passe ne sont pas identique.",
-    path: ["confirmPassword"],
+  .refine((values) => values.password === values.confirmationPassword, {
+    message: 'Les mots de passe ne sont pas identique.',
+    path: ['confirmPassword'],
   });
 
 const RegisterForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const router = useRouter();
+  const [authControllerRegister, { isLoading }] = useAuthControllerRegisterMutation();
+
+  const form = useForm<RegisterUserDto>({
     resolver: zodResolver(formSchema),
-    defaultValues: { firstname: '', lastname: '', email: '', password: '', confirmPassword: '' },
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmationPassword: '',
+    },
   });
 
-  const isLoading = form.formState.isSubmitting;
+  //const isLoading = form.formState.isSubmitting;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = (values: RegisterUserDto) => {
+    authControllerRegister({ registerUserDto: values })
+      .unwrap()
+      .then(() => {
+        toast.success('Compte crée avec succès');
+        router.push('/auth/connexion');
+      })
+      .catch((err) => {
+        toast.error(err.data.message);
+      });
   };
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
-          name="firstname"
+          name="firstName"
           render={({ field }) => (
             <FormItem className="mb-6">
               <FormLabel className="ms-[4px] text-sm font-normal">Prénom</FormLabel>
@@ -52,7 +80,7 @@ const RegisterForm = () => {
           )}
         />
         <FormField
-          name="lastname"
+          name="lastName"
           render={({ field }) => (
             <FormItem className="mb-6">
               <FormLabel className="ms-[4px] text-sm font-normal">Nom</FormLabel>
@@ -101,7 +129,7 @@ const RegisterForm = () => {
         />
 
         <FormField
-          name="confirmPassword"
+          name="confirmationPassword"
           render={({ field }) => (
             <FormItem className="mb-4">
               <FormLabel className="ms-[4px] text-sm font-normal">
@@ -121,7 +149,7 @@ const RegisterForm = () => {
         />
 
         <Button variant="submit" type="submit" disabled={isLoading}>
-          S&apos;INSCRIRE
+          {isLoading ? <Spinner sm /> : "S'INSCRIRE"}
         </Button>
       </form>
     </Form>

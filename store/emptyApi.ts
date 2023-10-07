@@ -6,10 +6,11 @@ import { logout, setAuth } from './features/auth/authSlice';
 
 const mutex = new Mutex(); // create new mutex instance
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${process.env.NEXT_PUBLIC_HOST}/api`,
+  baseUrl: `${process.env.NEXT_PUBLIC_HOST}`,
   credentials: 'include',
   prepareHeaders: (headers) => {
     headers.set('Accept', 'plain/text, application/json');
+
     return headers;
   },
 });
