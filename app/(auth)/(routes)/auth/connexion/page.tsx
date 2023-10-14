@@ -1,8 +1,14 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import loginImage from '@/assets/img/bg-vinyl.png';
-import { LoginForm } from '@/components/forms';
-import { LoginNavbar } from '@/components/navbars';
+import { LoginForm } from '@/components/layouts/forms';
+import { LoginNavbar } from '@/components/layouts/navbars';
+
+export const metadata: Metadata = {
+  title: 'VinyCherry | Connexion',
+  description: "Page de connexion au site VinyCherry",
+};
 
 const ConnexionPage = () => {
   return (
@@ -35,14 +41,15 @@ const ConnexionPage = () => {
         </div>
 
         <div className="hidden md:block overflow-x-hidden h-full w-[40vw] absolute right-0">
-          <div className="w-full h-full">
+          <div className="w-full h-full relative">
             <Image
               src={loginImage}
               alt=""
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100%"
               quality={100}
-              className="absolute rounded-bl-[20px] bg-[50%_center] pr-20"
+              priority={true}
+              className="absolute rounded-bl-[20px] bg-[50%_center] pr-20 object-contain"
             />
           </div>
         </div>

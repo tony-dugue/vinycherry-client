@@ -1,5 +1,12 @@
-import { RegisterForm } from '@/components/forms';
-import { RegisterNavbar } from '@/components/navbars';
+import { Metadata } from 'next';
+
+import { RegisterForm } from '@/components/layouts/forms';
+import { RegisterNavbar } from '@/components/layouts/navbars';
+
+export const metadata: Metadata = {
+  title: 'VinyCherry | Inscription',
+  description: "Page d'inscription au site VinyCherry",
+};
 
 const InscriptionPage = () => {
   return (
@@ -9,7 +16,6 @@ const InscriptionPage = () => {
           className="absolute top-0 left-0 right-0 min-h-[70vh] md:min-h-[50vh] md:w-[calc(100vw_-_50px)] overflow-hidden md:mx-auto md:mt-[14px] z-[-1]
         bg-gradient-to-br from-primary-300 to-primary-600 md:rounded-[15px]"
         >
-          {/*<Image src={bgRegister} alt="" layout="fill" objectFit="cover" quality={100} className="md:rounded-[15px] bg-no-repeat" />*/}
         </div>
       </div>
 
@@ -39,21 +45,21 @@ const InscriptionPage = () => {
               className="flex items-center justify-center mr-[15px] w-[75px] h-[75px] rounded-[15px] border border-gray-300 cursor-pointer 
             transition duration-200 backdrop-brightness-[120%] hover:bg-primary-200 hover:border-none"
             >
-              <Link href="#">F</Link>
+              <Link rel="preload" href="#" as="style">F</Link>
             </div>
 
             <div
               className="flex items-center justify-center mr-[15px] w-[75px] h-[75px] rounded-[15px] border border-gray-300 cursor-pointer 
             transition duration-200 backdrop-brightness-[120%] hover:bg-primary-200 hover:border-none"
             >
-              <Link href="#">G</Link>
+              <Link rel="preload" href="#" as="style">G</Link>
             </div>
 
             <div
               className="flex items-center justify-center w-[75px] h-[75px] rounded-[15px] border border-gray-300 cursor-pointer 
             transition duration-200 backdrop-brightness-[120%] hover:bg-primary-200 hover:border-none"
             >
-              <Link href="#">I</Link>
+              <Link rel="preload" href="#" as="style">I</Link>
             </div>
           </div>
 

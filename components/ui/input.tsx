@@ -21,7 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 const AuthInput = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, autoComplete, ...props }, ref) => {
     return (
       <input
         type={type}
@@ -29,6 +29,7 @@ const AuthInput = React.forwardRef<HTMLInputElement, InputProps>(
           'w-full min-w-0 outline-none appearance-none transition duration-200 ps-4 pe-4 h-[3rem] border hover:border-gray-300 focus:border-primary-300 focus:shadow-focus relative rounded-[15px] mb-6 text-sm',
           className
         )}
+        autoComplete={autoComplete ? autoComplete : 'off'}
         ref={ref}
         {...props}
       />

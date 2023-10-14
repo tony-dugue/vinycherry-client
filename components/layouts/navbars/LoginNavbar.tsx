@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from "next/navigation";
+import { usePathname } from 'next/navigation';
 
-import { cn } from "@/lib/utils";
+import { AuthNavbarMenuMobile } from '@/components/layouts/navbars';
 import { Button } from '@/components/ui/button';
-import { AuthNavbarMenuMobile } from '@/components/navbars';
 import { authLinks } from '@/data/general';
+import { cn } from '@/lib/utils';
 
 const LoginNavbar = () => {
   const pathname = usePathname();
@@ -25,16 +25,16 @@ const LoginNavbar = () => {
         </Link>
 
         <div className="hidden lg:flex">
-          {authLinks.map( route => (
-            <Link 
-              href={route.href} 
-              key={route.href} 
-              className={cn("text-sm ms-0 px-3 me-0 sm:me-[2px] md:me-4 font-bold",
-              pathname === route.href ? 'text-primary-400 cursor-default' : 'text-gray-700')}
+          {authLinks.map((route) => (
+            <Link
+              href={route.href}
+              key={route.href}
+              className={cn(
+                'text-sm ms-0 px-3 me-0 sm:me-[2px] md:me-4 font-bold',
+                pathname === route.href ? 'text-primary-400 cursor-default' : 'text-gray-700'
+              )}
             >
-              <div className="flex items-center flex-1">
-                {route.label}
-              </div>
+              <div className="flex items-center flex-1">{route.label}</div>
             </Link>
           ))}
         </div>

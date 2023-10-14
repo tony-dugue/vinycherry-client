@@ -3,8 +3,8 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Setup = () => {
+const Toast = () => {
   return <ToastContainer />;
 };
 
-export default Setup;
+export default Toast;
