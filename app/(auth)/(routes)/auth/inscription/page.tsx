@@ -31,7 +31,7 @@ const InscriptionPage = () => {
       <div className="flex items-center justify-center mb-[60px] mt-[20px]">
         <div className="flex flex-col w-[445px] bg-white rounded-[15px] p-[40px] mx-[100px] shadow-registerForm">
           <p className="text-xl text-gray-700 font-bold text-center mb-[22px] font-body">
-            S&apos;inscrire
+            Créer un compte
           </p>
 
           {/* Social account */}

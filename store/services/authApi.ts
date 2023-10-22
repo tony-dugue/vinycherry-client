@@ -35,12 +35,12 @@ const injectedRtkApi = api
         query: () => ({ url: `/auth/logout`, method: 'POST' }),
         invalidatesTags: ['auth'],
       }),
-      authControllerRefreshTokens: build.mutation<
+      authControllerRefreshTokens: build.query<
         AuthControllerRefreshTokensApiResponse,
         AuthControllerRefreshTokensApiArg
       >({
-        query: () => ({ url: `/auth/refresh`, method: 'POST' }),
-        invalidatesTags: ['auth'],
+        query: () => ({ url: `/auth/refresh` }),
+        providesTags: ['auth'],
       }),
     }),
     overrideExisting: false,
@@ -73,5 +73,5 @@ export const {
   useAuthControllerRegisterMutation,
   useAuthControllerLoginMutation,
   useAuthControllerLogoutMutation,
-  useAuthControllerRefreshTokensMutation,
+  useAuthControllerRefreshTokensQuery,
 } = injectedRtkApi;

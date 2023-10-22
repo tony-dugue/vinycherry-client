@@ -5,12 +5,13 @@ import { Mutex } from 'async-mutex';
 import { logout, setAuth } from './features/auth/authSlice';
 
 const mutex = new Mutex(); // create new mutex instance
+
 const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.NEXT_PUBLIC_HOST}`,
   credentials: 'include',
   prepareHeaders: (headers) => {
     headers.set('Accept', 'plain/text, application/json');
-
+    headers.set('Access-Control-Allow-Origin', '*');
     return headers;
   },
 });
@@ -28,7 +29,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       const release = await mutex.acquire();
       try {
         const refreshResult = await baseQuery(
-          { url: `/auth/refresh`, method: 'POST' },
+          { url: `/auth/refresh`, method: 'GET' },
           api,
           extraOptions
         );

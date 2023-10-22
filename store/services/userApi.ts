@@ -17,17 +17,15 @@ const injectedRtkApi = api
     overrideExisting: false,
   });
 export { injectedRtkApi as vinycherryApi };
-export type UserControllerGetUserApiResponse = /** status 200 Opération réussie */ FindUserDto;
+export type UserControllerGetUserApiResponse = /** status 200 Opération réussie */ UserDto;
 export type UserControllerGetUserApiArg = void;
-export type FindUserDto = {
+export type UserDto = {
   id: number;
   createdAt: string;
   updatedAt: string;
   email: string;
-  hash: string;
-  hashedRt: string;
   firstName: string;
   lastName: string;
-  role: string;
+  role: 'ADMIN' | 'USER';
 };
 export const { useUserControllerGetUserQuery } = injectedRtkApi;
