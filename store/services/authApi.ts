@@ -13,7 +13,7 @@ const injectedRtkApi = api
         query: (queryArg) => ({
           url: `/auth/local/register`,
           method: 'POST',
-          body: queryArg.registerUserDto,
+          body: queryArg.createUserDto,
         }),
         invalidatesTags: ['auth'],
       }),
@@ -48,7 +48,7 @@ const injectedRtkApi = api
 export { injectedRtkApi as vinycherryApi };
 export type AuthControllerRegisterApiResponse = unknown;
 export type AuthControllerRegisterApiArg = {
-  registerUserDto: RegisterUserDto;
+  createUserDto: CreateUserDto;
 };
 export type AuthControllerLoginApiResponse = unknown;
 export type AuthControllerLoginApiArg = {
@@ -58,7 +58,7 @@ export type AuthControllerLogoutApiResponse = unknown;
 export type AuthControllerLogoutApiArg = void;
 export type AuthControllerRefreshTokensApiResponse = unknown;
 export type AuthControllerRefreshTokensApiArg = void;
-export type RegisterUserDto = {
+export type CreateUserDto = {
   email: string;
   password: string;
   confirmationPassword: string;

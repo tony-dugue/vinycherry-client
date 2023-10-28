@@ -12,7 +12,7 @@ const RequireAuth = ({ children }: Props) => {
   const { isLoading, isAuthenticated } = useAppSelector((state) => state.auth);
 
   if (!isAuthenticated) {
-    redirect('/auth/connexion');
+    redirect('/connexion');
   }
   
   if (isLoading) {

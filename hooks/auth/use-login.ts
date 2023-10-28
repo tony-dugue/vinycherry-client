@@ -5,9 +5,8 @@ import { toast } from 'react-toastify';
 import * as z from 'zod';
 
 import { LoginUserDto, useAuthControllerLoginMutation } from '@/store/services/authApi';
-import { setAuth, setUserInformation } from '@/store/features/auth/authSlice';
+import { setAuth } from '@/store/features/auth/authSlice';
 import { useAppDispatch } from '@/store/hooks';
-import { useUserControllerGetUserQuery } from '@/store/services/userApi';
 
 const loginFormSchema = z.object({
   email: z
@@ -26,7 +25,6 @@ const useLogin = () => {
   const dispatch = useAppDispatch();
   
   const [authControllerLogin, { isLoading }] = useAuthControllerLoginMutation();
-  const { data: user } = useUserControllerGetUserQuery();
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
     resolver: zodResolver(loginFormSchema),
@@ -36,10 +34,6 @@ const useLogin = () => {
   const onSubmit = async (values: LoginUserDto) => {
     authControllerLogin({ loginUserDto: values })
     .unwrap()
-    .then(() => {
-      useUserControllerGetUserQuery;
-      dispatch(setUserInformation(user))
-    })
     .then(() => {
       dispatch(setAuth())
       toast.success('Connection réussie');

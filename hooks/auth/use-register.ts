@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import * as z from 'zod';
 
-import { RegisterUserDto, useAuthControllerRegisterMutation } from '@/store/services/authApi';
+import { CreateUserDto, useAuthControllerRegisterMutation } from '@/store/services/authApi';
 
 const registerFormSchema = z
   .object({
@@ -24,9 +24,9 @@ const registerFormSchema = z
 
 const useRegister = () => {
   const router = useRouter();
-  const [authControllerRegister, { isLoading }] = useAuthControllerRegisterMutation();
+  const [userControllerRegister, { isLoading }] = useAuthControllerRegisterMutation();
 
-  const form = useForm<RegisterUserDto>({
+  const form = useForm<CreateUserDto>({
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
       firstName: '',
@@ -37,14 +37,12 @@ const useRegister = () => {
     },
   });
 
-  //const isLoading = form.formState.isSubmitting;
-
-  const onSubmit = (values: RegisterUserDto) => {
-    authControllerRegister({ registerUserDto: values })
+  const onSubmit = (values: CreateUserDto) => {
+    userControllerRegister({ createUserDto: values })
       .unwrap()
       .then(() => {
         toast.success('Compte crée avec succès');
-        router.push('/auth/connexion');
+        router.push('/connexion');
       })
       .catch((err) => {
         toast.error(err.data.message);
